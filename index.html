@@ -9,12 +9,12 @@
         body { margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: #fff0f6; font-family: sans-serif; overflow: hidden; }
         .container { width: 90%; max-width: 400px; background: white; padding: 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
         .image-box { width: 100%; height: 250px; margin-bottom: 20px; border-radius: 20px; overflow: hidden; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; }
-        .gif { width: 100%; height: 100%; object-fit: cover; }
+        .gif { width: 100%; height: 100%; object-fit: contain; }
         h1 { color: #d6336c; font-size: 1.5rem; margin-bottom: 25px; }
-        .buttons { display: flex; gap: 10px; justify-content: center; }
+        .buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
         button { padding: 15px 25px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: 0.2s; }
         .btn-red { background-color: #ff3366; color: white; width: 100%; }
-        .btn-yes { background-color: #28a745; color: white; position: relative; z-index: 10; }
+        .btn-yes { background-color: #28a745; color: white; z-index: 100; }
         .btn-no { background-color: #dc3545; color: white; }
         .hidden { display: none !important; }
     </style>
@@ -22,13 +22,13 @@
 <body>
 
     <div id="s1" class="container">
-        <div class="image-box"><img class="gif" src="https://media1.tenor.com/m/IC9_XvunY7wAAAAC/cute-cat.gif"></div>
+        <div class="image-box"><img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/MDJ9IbMddcW7C/giphy.gif"></div>
         <h1>Hej Liluś, mam pytanie... 🐱</h1>
         <button class="btn-red" onclick="sh(1,2)">Dalej</button>
     </div>
 
     <div id="s2" class="container hidden">
-        <div class="image-box"><img class="gif" src="https://media1.tenor.com/m/L2S57-nJv7kAAAAC/the-rock-rock-one-eyebrow-raised.gif"></div>
+        <div class="image-box"><img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/26ghbWoXv3G6ypo8o/giphy.gif"></div>
         <h1>Jesteś w ciąży? 🤔</h1>
         <div class="buttons">
             <button class="btn-yes" onclick="sh(2,3)">Tak</button>
@@ -37,7 +37,7 @@
     </div>
 
     <div id="s3" class="container hidden">
-        <div class="image-box"><img class="gif" src="https://media1.tenor.com/m/yS7shv_6X7MAAAAC/mocha-bear-hearts.gif"></div>
+        <div class="image-box"><img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/v8SuonpI3KxTG/giphy.gif"></div>
         <h1>Zostaniesz moją Walentynką? ❤️</h1>
         <div class="buttons">
             <button id="yB" class="btn-yes" onclick="f()">TAK</button>
@@ -46,7 +46,7 @@
     </div>
 
     <div id="res" class="container hidden">
-        <div class="image-box"><img class="gif" src="https://media1.tenor.com/m/Z86667vBv_kAAAAC/milk-and-mocha-hug.gif"></div>
+        <div class="image-box"><img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/KztT2c4u8mYYUiMKdJ/giphy.gif"></div>
         <h1>SUPER!!! ❤️</h1>
         <p>Wiedziałem! 🥰</p>
     </div>
@@ -54,7 +54,7 @@
     <script>
         let sc = 1;
         function sh(c,n){document.getElementById('s'+c).classList.add('hidden');document.getElementById('s'+n).classList.remove('hidden');}
-        function grow(){sc+=0.6;document.getElementById('yB').style.transform=`scale(${sc})`;}
+        function grow(){sc+=0.8;document.getElementById('yB').style.transform=`scale(${sc})`;}
         function f(){
             document.getElementById('s3').classList.add('hidden');
             document.getElementById('res').classList.remove('hidden');
