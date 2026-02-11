@@ -9,21 +9,20 @@
         body { margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: #fff0f6; font-family: sans-serif; overflow: hidden; }
         .container { width: 90%; max-width: 400px; background: white; padding: 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; position: relative; }
         .image-box { width: 100%; height: 250px; margin-bottom: 20px; border-radius: 20px; overflow: hidden; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; }
-        .gif { width: 100%; height: 100%; object-fit: contain; }
+        .gif { width: 100%; height: 100%; object-fit: cover; }
         h1 { color: #d6336c; font-size: 1.4rem; margin-bottom: 25px; }
-        .buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .buttons { display: flex; gap: 10px; justify-content: center; min-height: 60px; position: relative; }
         button { padding: 15px 25px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: 0.2s; }
         .btn-red { background-color: #ff3366; color: white; width: 100%; }
-        .btn-yes { background-color: #28a745; color: white; }
+        .btn-yes { background-color: #28a745; color: white; transition: 0.1s; }
         .btn-no { background-color: #dc3545; color: white; }
-        #y2 { position: absolute; transition: 0.1s; z-index: 999; }
         .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
     <div id="s1" class="container">
-        <div class="image-box"><img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/MDJ9IbMddcW7C/giphy.gif"></div>
+        <div class="image-box"><img class="gif" src="https://images.pexels.com/photos/45201/kitty-cat-baby-kitten-45201.jpeg?auto=compress&cs=tinysrgb&w=600"></div>
         <h1>Hej Liluś, mam pytanie... 🐱</h1>
         <button class="btn-red" onclick="sh(1,2)">Dalej</button>
     </div>
@@ -31,16 +30,16 @@
     <div id="s2" class="container hidden">
         <div class="image-box"><img id="gif2" class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/26ghbWoXv3G6ypo8o/giphy.gif"></div>
         <h1 id="t2">Jesteś w ciąży? 🤔</h1>
-        <div class="buttons" style="min-height: 50px;">
+        <div class="buttons" id="btnContainer2">
             <button id="y2" class="btn-yes" onmouseover="moveBtn()" onclick="moveBtn()">Tak</button>
-            <button id="n2" class="btn-no" onclick="poko(false)">Nie</button>
+            <button id="n2" class="btn-no" onclick="poko()">Nie</button>
             <button id="next1" class="btn-red hidden" onclick="sh(2,25)">Dalej</button>
         </div>
     </div>
 
     <div id="s25" class="container hidden">
         <div class="image-box"><img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/H5C8CevNMbpBqNqFpH/giphy.gif"></div>
-        <h1>Dobra, teraz tak na serio... 🤨</h1>
+        <h1>Dobra teraz tak na serio...</h1>
         <button class="btn-red" onclick="sh(25,3)">Dalej</button>
     </div>
 
@@ -68,6 +67,7 @@
         
         function moveBtn() {
             const btn = document.getElementById('y2');
+            btn.style.position = 'fixed';
             const x = Math.random() * (window.innerWidth - btn.offsetWidth);
             const y = Math.random() * (window.innerHeight - btn.offsetHeight);
             btn.style.left = x + 'px';
@@ -75,9 +75,10 @@
         }
 
         function poko() {
-            document.getElementById('t2').innerHTML = "No to po co kłamiesz? 😂";
-            document.getElementById('y2').classList.add('hidden');
-            document.getElementById('n2').classList.add('hidden');
+            document.getElementById('t2').innerHTML = "To po co kłamiesz kasti";
+            document.getElementById('gif2').src = "https://media.giphy.com/media/26ghbWoXv3G6ypo8o/giphy.gif"; 
+            document.getElementById('y2').style.display = 'none';
+            document.getElementById('n2').style.display = 'none';
             document.getElementById('next1').classList.remove('hidden');
         }
 
