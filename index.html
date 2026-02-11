@@ -61,13 +61,8 @@
             pointer-events: none;
         }
 
-        /* Skaczący kot - powiększony o 40% i przesunięty do środka */
         .s-1 { width: 225px; top: 0px; left: 40px; transform: rotate(-10deg); z-index: 3; } 
-        
-        /* Środkowy (uśmiechnięty) kot */
         .s-2 { width: 160px; bottom: 10px; left: 30px; transform: rotate(8deg); z-index: 2; } 
-        
-        /* Silly cat z sercami */
         .s-3 { 
             width: 250px; 
             top: 60px; 
@@ -81,12 +76,15 @@
         .big-yay { font-size: 2.8rem; color: #ff3366; margin-bottom: 10px; font-weight: 900; }
         .sub-text { font-size: 1.5rem; color: #d6336c; font-weight: bold; }
         
-        .buttons { display: flex; gap: 15px; justify-content: center; align-items: center; min-height: 120px; }
+        /* Zwiększony odstęp między przyciskami (gap: 40px) dla łatwiejszego klikania na telefonie */
+        .buttons { display: flex; gap: 40px; justify-content: center; align-items: center; min-height: 120px; }
+        
         button { padding: 15px 25px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: transform 0.2s; white-space: nowrap; }
         .btn-red { background-color: #ff3366; color: white; width: 100%; }
-        #y2 { background-color: #28a745; color: white; transition: all 0.4s ease; z-index: 9999; }
+        
+        #y2 { background-color: #28a745; color: white; transition: all 0.4s ease; z-index: 9999; margin-right: 10px; }
         #yB { background-color: #28a745; color: white; flex-shrink: 0; z-index: 10; }
-        .btn-no { background-color: #dc3545; color: white; }
+        .btn-no { background-color: #dc3545; color: white; margin-left: 10px; }
         .hidden { display: none !important; }
 
         #s3 .image-box { margin-bottom: 35px; }
@@ -144,6 +142,7 @@
         function moveBtn() {
             const btn = document.getElementById('y2');
             btn.style.position = 'fixed';
+            // Zabezpieczenie, żeby przycisk nie uciekał poza ekran i był łatwiejszy do (nie)trafienia
             const x = Math.max(20, Math.random() * (window.innerWidth - btn.offsetWidth - 20));
             const y = Math.max(20, Math.random() * (window.innerHeight - btn.offsetHeight - 20));
             btn.style.left = x + 'px';
