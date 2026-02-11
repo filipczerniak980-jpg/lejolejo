@@ -6,7 +6,6 @@
     <title>Dla Ciebie ❤️</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        /* TŁO W SERDUSZKA */
         body { 
             margin: 0; 
             display: flex; 
@@ -18,93 +17,125 @@
             background-position: 0 0, 50px 50px;
             background-size: 100px 100px;
             font-family: 'Segoe UI', sans-serif; 
-            overflow: hidden; 
+            overflow-x: hidden; 
         }
 
         .container { 
             width: 90%; 
-            max-width: 400px; 
-            background: rgba(255, 255, 255, 0.9); 
-            padding: 30px; 
+            max-width: 450px; 
+            background: rgba(255, 240, 246, 0.95); 
+            padding: 25px; 
             border-radius: 30px; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
             text-align: center; 
             position: relative; 
-            backdrop-filter: blur(5px);
-            border: 2px solid #ffffff;
+            border: 2px solid #ffb6c1;
         }
 
-        .image-box { width: 100%; height: 250px; margin-bottom: 20px; border-radius: 20px; overflow: hidden; background-color: #fff; display: flex; align-items: center; justify-content: center; }
-        .gif { width: 100%; height: 100%; object-fit: contain; }
-        h1 { color: #d6336c; font-size: 1.3rem; margin-bottom: 25px; min-height: 50px; }
-        .buttons { display: flex; gap: 15px; justify-content: center; align-items: center; min-height: 60px; }
-        button { padding: 15px 25px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.1rem; font-weight: bold; }
-        .btn-red { background-color: #ff3366; color: white; width: 100%; }
-        
-        /* PŁYNNY RUCH PRZYCISKU */
-        #y2 { 
-            background-color: #28a745; 
-            color: white; 
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); 
-            z-index: 9999;
+        .image-box { 
+            width: 100%; 
+            height: 250px; 
+            margin-bottom: 25px; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            background-color: #fff; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
         }
+
+        .gif { width: 100%; height: 100%; object-fit: cover; }
         
-        .btn-yes { background-color: #28a745; color: white; }
+        .sticker-area { 
+            height: 400px; 
+            position: relative; 
+            margin-bottom: 20px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sticker { 
+            position: absolute; 
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        /* Skaczący kot - powiększony o 40% i przesunięty do środka */
+        .s-1 { width: 225px; top: 0px; left: 40px; transform: rotate(-10deg); z-index: 3; } 
+        
+        /* Środkowy (uśmiechnięty) kot */
+        .s-2 { width: 160px; bottom: 10px; left: 30px; transform: rotate(8deg); z-index: 2; } 
+        
+        /* Silly cat z sercami */
+        .s-3 { 
+            width: 250px; 
+            top: 60px; 
+            right: -30px; 
+            transform: rotate(-5deg); 
+            z-index: 5; 
+            mix-blend-mode: multiply; 
+        }
+
+        h1 { color: #d6336c; font-size: 1.3rem; margin-bottom: 25px; line-height: 1.4; }
+        .big-yay { font-size: 2.8rem; color: #ff3366; margin-bottom: 10px; font-weight: 900; }
+        .sub-text { font-size: 1.5rem; color: #d6336c; font-weight: bold; }
+        
+        .buttons { display: flex; gap: 15px; justify-content: center; align-items: center; min-height: 120px; }
+        button { padding: 15px 25px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: transform 0.2s; white-space: nowrap; }
+        .btn-red { background-color: #ff3366; color: white; width: 100%; }
+        #y2 { background-color: #28a745; color: white; transition: all 0.4s ease; z-index: 9999; }
+        #yB { background-color: #28a745; color: white; flex-shrink: 0; z-index: 10; }
         .btn-no { background-color: #dc3545; color: white; }
         .hidden { display: none !important; }
+
+        #s3 .image-box { margin-bottom: 35px; }
     </style>
 </head>
 <body>
 
     <div id="s1" class="container">
-        <div class="image-box">
-            <img class="gif" src="https://media.giphy.com/media/Zl7u48zLVFgLpRwq6f/giphy.gif">
-        </div>
+        <div class="image-box"><img class="gif" src="https://media.tenor.com/EDreJG9elw0AAAAM/black-dude.gif"></div>
         <h1>Hej Liluś, mam pytanie... 🐱</h1>
         <button class="btn-red" onclick="sh(1,2)">Dalej</button>
     </div>
 
     <div id="s2" class="container hidden">
-        <div class="image-box">
-            <img id="gif2" class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/H5C8CevNMbpBqNqFpH/giphy.gif">
-        </div>
+        <div class="image-box"><img id="ciazaGif" class="gif" src="https://media.tenor.com/nLtEykiFQ34AAAAC/kiryuureno-gatinho.gif"></div>
         <h1 id="t2">Jesteś w ciąży? 🤔</h1>
         <div class="buttons">
-            <button id="y2" onmouseover="moveBtn()" ontouchstart="moveBtn()">Tak</button>
+            <button id="y2" onmouseover="moveBtn()" ontouchstart="moveBtn()" onclick="moveBtn()">Tak</button>
             <button id="n2" class="btn-no" onclick="poko()">Nie</button>
             <button id="next1" class="btn-red hidden" onclick="sh(2,25)">Dalej</button>
         </div>
     </div>
 
     <div id="s25" class="container hidden">
-        <div class="image-box">
-            <img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/26ghbWoXv3G6ypo8o/giphy.gif">
-        </div>
+        <div class="image-box"><img class="gif" src="https://media.giphy.com/media/Zl7u48zLVFgLpRwq6f/giphy.gif" style="object-fit: contain;"></div>
         <h1>Dobra teraz tak na serio...</h1>
         <button class="btn-red" onclick="sh(25,3)">Dalej</button>
     </div>
 
     <div id="s3" class="container hidden">
-        <div class="image-box">
-            <img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/v8SuonpI3KxTG/giphy.gif">
-        </div>
+        <div class="image-box"><img class="gif" src="https://media.tenor.com/osZUWRlvp-YAAAAM/cat-yes.gif"></div>
         <h1>Zostaniesz moją Walentynką? ❤️</h1>
         <div class="buttons">
-            <button id="yB" class="btn-yes" onclick="f()">TAK</button>
-            <button id="nB" class="btn-no" onclick="grow()">Nie</button>
+            <button id="yB" onclick="f()">TAK</button>
+            <button id="nB" class="btn-no" onclick="growAndChange()">Nie</button>
         </div>
     </div>
 
     <div id="res" class="container hidden">
-        <div class="image-box">
-            <img class="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5eXJ6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHR6eHImZXA9djFfaW50ZXJuYWxfZ2lmX2J5X2lkJmN0PWc/KztT2c4u8mYYUiMKdJ/giphy.gif">
+        <div class="sticker-area">
+            <img class="sticker s-1" src="https://media.tenor.com/SLglGuVqz4oAAAAm/cat-jumping-catjump.webp">
+            <img class="sticker s-2" src="https://media.tenor.com/JttVZJbiaRYAAAAm/cute-cat-smiling.webp">
+            <img class="sticker s-3" src="https://media.tenor.com/Jm1WIzoZ-vAAAAAM/heart-silly-cat-love.gif">
         </div>
-        <h1>SUPER!!! ❤️</h1>
-        <p>Wiedziałem! 🥰</p>
+        <div class="big-yay">YAYYYYYY!!!</div>
+        <div class="sub-text">widzimy sie 14 mała 😘</div>
     </div>
 
     <script>
-        let sc = 1;
         function sh(c,n){
             document.getElementById('s'+c).classList.add('hidden');
             document.getElementById('s'+n).classList.remove('hidden');
@@ -120,21 +151,34 @@
         }
 
         function poko() {
-            document.getElementById('t2').innerHTML = "To po co kłamiesz kasti";
+            document.getElementById('t2').innerHTML = "No mam nadzieje";
+            document.getElementById('ciazaGif').src = "https://media.tenor.com/Zvw84yJDalwAAAAC/angry-cat.gif";
             document.getElementById('y2').classList.add('hidden');
             document.getElementById('n2').classList.add('hidden');
             document.getElementById('next1').classList.remove('hidden');
         }
 
-        function grow(){
-            sc += 1.4;
-            document.getElementById('yB').style.transform = `scale(${sc})`;
+        let sc = 1;
+        let noClickCount = 0;
+        const noTexts = ["aha?", "proszeee 🥺", "Liluś...", "Jesteś pewna?", "Przemyśl to! 💔", "No weź..."];
+
+        function growAndChange() {
+            sc += 0.7;
+            const yesBtn = document.getElementById('yB');
+            yesBtn.style.transform = `scale(${sc})`;
+            const noBtn = document.getElementById('nB');
+            if (noClickCount < noTexts.length) { 
+                noBtn.innerText = noTexts[noClickCount]; 
+                noClickCount++; 
+            } else { 
+                noBtn.style.display = 'none'; 
+            }
         }
         
         function f(){
             document.getElementById('s3').classList.add('hidden');
             document.getElementById('res').classList.remove('hidden');
-            confetti({particleCount:150,spread:70,origin:{y:0.6}});
+            confetti({particleCount:250, spread:100, origin:{y:0.6}});
         }
     </script>
 </body>
